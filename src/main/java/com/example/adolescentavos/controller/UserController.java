@@ -2,6 +2,8 @@ package com.example.adolescentavos.controller;
 
 import com.example.adolescentavos.dto.UserDTO;
 import com.example.adolescentavos.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +15,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@Tag(name = "Users", description = "User management")
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping
+    @Operation(summary = "List all users")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         log.info("Fetching all users");
         return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Search user by id")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         log.info("Fetching user with id {}", id);
         UserDTO user = userService.findById(id);

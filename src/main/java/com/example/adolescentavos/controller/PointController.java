@@ -2,6 +2,7 @@ package com.example.adolescentavos.controller;
 
 import com.example.adolescentavos.dto.PointDTO;
 import com.example.adolescentavos.service.PointService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,9 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/points")
 @RequiredArgsConstructor
+@Tag(name = "Point", description = "Points management")
+@RequestMapping("/api/points")
 public class PointController {
 
     private final PointService pointsService;
